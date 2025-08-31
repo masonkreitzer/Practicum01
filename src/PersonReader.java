@@ -32,7 +32,7 @@ public class PersonReader {
             System.out.println(header);
             System.out.println("======================================================");
 
-            // Reads and displays file
+            // Reads and displays the file
             try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
                 String line;
                 while ((line = br.readLine()) != null) {
@@ -45,11 +45,13 @@ public class PersonReader {
                         String title = parts[3].trim();
                         int yearOfBirth = Integer.parseInt(parts[4].trim());
 
-                        System.out.printf("%-7s %-11s %-11s %-8s %-4d\n", id, firstName, lastName, title, yearOfBirth);
+                        String formattedLine = String.format("%-7s %-11s %-11s %-8s %-4d\n", id, firstName, lastName, title, yearOfBirth);
+                        System.out.println(formattedLine);
                     } else {
                         System.out.println("Invalid line format: " + line);
                     }
                 }
+
             } catch (IOException e) {
                 System.out.println("Error reading the file: " + e.getMessage());
             } catch (NumberFormatException e) {
