@@ -7,12 +7,13 @@ import java.util.Scanner;
 
 public class PersonGenerator {
 
+    // Person class to hold the person data
     static class Person {
-        private String id;
-        private String firstName;
-        private String lastName;
-        private String title;
-        private int yearOfBirth;
+        final String id;
+        final String firstName;
+        final String lastName;
+        final String title;
+        final int yearOfBirth;
 
         public Person(String id, String firstName, String lastName, String title, int yearOfBirth) {
             this.id = id;
@@ -62,7 +63,7 @@ public class PersonGenerator {
         }
 
         // Asks for filename to save
-        String filename = SafeInput.getNonZeroLenString(scanner, "Enter filename to save (e.g., PersonTestData.txt)");
+        String filename = SafeInput.getNonZeroLenString(scanner, "Enter filename to save:");
 
         // Saves to file
         Path file = Path.of(filename);
