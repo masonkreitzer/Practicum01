@@ -10,21 +10,21 @@ public class ProductReader {
         Scanner scanner = new Scanner(System.in);
 
         // Uses JFileChooser to let the user pick the file
-        JFileChooser chooser = new JFileChooser();
-        chooser.setDialogTitle("Select a product data file");
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Select a product data file");
 
-        int result = chooser.showOpenDialog(null); // Open file dialog
+        int result = fileChooser.showOpenDialog(null); // Open file dialog
 
         if (result == JFileChooser.APPROVE_OPTION) {
-            String filePath = chooser.getSelectedFile().getAbsolutePath();
+            String filePath = fileChooser.getSelectedFile().getAbsolutePath();// Gets the file path
             System.out.println("Selected file: " + filePath);
 
             // Uses SafeInput to confirm loading the file
             boolean confirm = SafeInput.getYNConfirm(scanner, "Do you want to load this file?");
             if (!confirm) {
-                System.out.println("Loading cancelled.");
+                System.out.println("File loading cancelled.");
                 scanner.close();
-                return;
+                return; // Exits program
             }
 
             // Prints the column headers
@@ -32,7 +32,7 @@ public class ProductReader {
             System.out.println(header);
             System.out.println("======================================================");
 
-            // Reads and display the file
+            // Reads and displays the file
             try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
                 String line;
                 while ((line = reader.readLine()) != null) {
@@ -48,12 +48,12 @@ public class ProductReader {
                         String formattedLine = String.format("%-8s %-12s %-30s %.1f", id, name, description, cost);
                         System.out.println(formattedLine);
                     } else {
-                        System.out.println("Invalid record: " + line);
+                        System.out.println("Invalid line format: " + line);
                     }
                 }
 
             } catch (IOException e) {
-                System.out.println("Error reading file: " + e.getMessage());
+                System.out.println("Error reading the file: " + e.getMessage());
             } catch (NumberFormatException e) {
                 System.out.println("Invalid cost format: " + e.getMessage());
             }

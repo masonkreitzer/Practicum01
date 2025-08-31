@@ -20,8 +20,8 @@ public class PersonReader {
             System.out.println("Selected file: " + filePath);
 
             // Uses SafeInput to confirm loading the file
-            boolean proceed = SafeInput.getYNConfirm(scanner, "Do you want to load this file");
-            if (!proceed) {
+            boolean confirm = SafeInput.getYNConfirm(scanner, "Do you want to load this file");
+            if (!confirm) {
                 System.out.println("File loading cancelled.");
                 scanner.close();
                 return; // Exits program
@@ -45,6 +45,7 @@ public class PersonReader {
                         String title = parts[3].trim();
                         int yearOfBirth = Integer.parseInt(parts[4].trim());
 
+                        // Format and display each product line
                         String formattedLine = String.format("%-7s %-11s %-11s %-8s %-4d\n", id, firstName, lastName, title, yearOfBirth);
                         System.out.println(formattedLine);
                     } else {
